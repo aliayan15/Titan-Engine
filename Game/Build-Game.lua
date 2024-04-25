@@ -12,9 +12,11 @@ project "Game"
       "Scr",
 
 	  -- Include Core
-	  "../TitanEngine/Scr"
+	  "../TitanEngine/Scr",
+      "../TitanEngine/vendor/sfml/include"
    }
 
+   libdirs { "../" }
    links
    {
       "TitanEngine"
