@@ -1,8 +1,8 @@
--- premake5.lua
-workspace "New Project"
+
+workspace "TitanEngine"
    architecture "x64"
-   configurations { "Debug", "Release", "Dist" }
-   startproject "App"
+   configurations { "Debug", "Release"}
+   startproject "Game"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
@@ -10,8 +10,8 @@ workspace "New Project"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
-group "Core"
-	include "Core/Build-Core.lua"
+group "TitanEngine"
+	include "TitanEngine/Build-Engine.lua"
 group ""
 
-include "App/Build-App.lua"
+include "Game/Build-Game.lua"

@@ -1,23 +1,31 @@
-project "Core"
-   kind "StaticLib"
+project "Game"
+   kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp" }
+   files { "Scr/**.h", "Scr/**.cpp" }
 
    includedirs
    {
-      "Source"
+      "Scr",
+
+	  -- Include Core
+	  "../TitanEngine/Scr"
    }
 
-   targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
-   objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
+   links
+   {
+      "TitanEngine"
+   }
+
+   targetdir ("../Bin/" .. OutputDir .. "/%{prj.name}")
+   objdir ("../Bin-Int/" .. OutputDir .. "/%{prj.name}")
 
    filter "system:windows"
        systemversion "latest"
-       defines { }
+       defines { "WINDOWS" }
 
    filter "configurations:Debug"
        defines { "DEBUG" }
@@ -28,10 +36,6 @@ project "Core"
        defines { "RELEASE" }
        runtime "Release"
        optimize "On"
-       symbols "On"
-
-   filter "configurations:Dist"
-       defines { "DIST" }
-       runtime "Release"
-       optimize "On"
        symbols "Off"
+
+   
