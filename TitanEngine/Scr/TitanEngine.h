@@ -28,11 +28,11 @@ namespace te
 
 	private:
 		sf::RenderWindow m_window;
+		unsigned m_windowHeight = 500;
+		unsigned m_windowWidth = 800;
 		sceneType m_currentScene = nullptr;
 		std::unordered_map<std::string, sceneType> m_sceneMap;
 		std::string m_currentSceneName;
-		unsigned m_windowHeight = 500;
-		unsigned m_windowWidth = 800;
 		bool m_isPaused = false;
 		bool m_isFocused = true;
 		int m_fps = 60;

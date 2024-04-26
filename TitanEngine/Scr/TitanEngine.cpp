@@ -33,10 +33,15 @@ namespace te
 	}
 	void TitanEngine::GameInit()
 	{
+		sf::ContextSettings settings;
+		settings.antialiasingLevel = 4;
+		m_window.create(sf::VideoMode(m_windowWidth, m_windowHeight), "Titan Engine", sf::Style::Close, settings);
+		m_window.setFramerateLimit(m_fps);
+		m_window.setKeyRepeatEnabled(false);
 	}
 	void TitanEngine::GameUpdate(float deltaTime)
 	{
-
+		m_currentScene->Update();
 	}
 
 	void TitanEngine::ChangeScene(const std::string& sceneName)
