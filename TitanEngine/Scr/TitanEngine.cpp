@@ -1,4 +1,5 @@
 #include "TitanEngine.h"
+#include<iostream>
 
 namespace te
 {
@@ -14,46 +15,61 @@ namespace te
 	{
 	}
 
-	void TitanEngine::run(const std::string& startScene)
+	void TitanEngine::Run(const std::string& startScene)
 	{
-		gameInit();
-		changeScene(startScene);
-		
+		GameInit();
+		ChangeScene(startScene);
+
 		while (m_window.isOpen())
 		{
-			sf::Time elapsed = m_clock.restart();
+			static sf::Clock clock;
+			float dt = clock.restart().asSeconds();
 			// user input check
 			if (!m_isPaused && m_isFocused)
 			{
-				gameUpdate(elapsed.asSeconds());
+				GameUpdate(dt);
 			}
 		}
 	}
-	void TitanEngine::gameInit()
+	void TitanEngine::GameInit()
 	{
 	}
-	void TitanEngine::gameUpdate(float deltaTime)
+	void TitanEngine::GameUpdate(float deltaTime)
 	{
 
 	}
 
-	void TitanEngine::changeScene(const std::string& sceneName)
+	void TitanEngine::ChangeScene(const std::string& sceneName)
 	{
+		if (m_sceneMap.find(sceneName) == m_sceneMap.end())
+		{
+			std::cout << "Scene is not found: " << sceneName << std::endl;
+			return;
+		}
+		if (m_currentScene != nullptr)
+			m_currentScene->EndScene();
+		m_currentScene = m_sceneMap.at(sceneName);
+		m_currentScene->Init(this);
 	}
 
-	sf::RenderWindow& TitanEngine::getWindow()
+	void TitanEngine::AddScene(const std::string& sceneName, sceneType scene)
+	{
+		m_sceneMap[sceneName] = scene;
+	}
+
+	sf::RenderWindow& TitanEngine::GetWindow()
 	{
 		return m_window;
 	}
-	unsigned TitanEngine::windowHeight() const
+	unsigned TitanEngine::WindowHeight() const
 	{
 		return m_windowHeight;
 	}
-	unsigned TitanEngine::windowWidth() const
+	unsigned TitanEngine::WindowWidth() const
 	{
 		return m_windowWidth;
 	}
-	int TitanEngine::getFps() const
+	int TitanEngine::GetFps() const
 	{
 		return m_fps;
 	}

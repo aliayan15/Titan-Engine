@@ -1,10 +1,12 @@
 #pragma once
 #include"SFML/Graphics.hpp"
 #include<string>
+#include"SceneBase.h"
+#include<unordered_map>
 
 namespace te
 {
-
+	typedef std::shared_ptr<SceneBase> sceneType;
 	class TitanEngine
 	{
 	public:
@@ -12,20 +14,23 @@ namespace te
 		TitanEngine(unsigned windowWidth, unsigned windowHeight);
 		TitanEngine(unsigned windowWidth, unsigned windowHeight, int fpsLimit);
 
-		void run(const std::string& startScene);
-		void changeScene(const std::string& sceneName);
-		sf::RenderWindow& getWindow();
-		unsigned windowHeight() const;
-		unsigned windowWidth() const;
-		int getFps() const;
+		void Run(const std::string& startScene);
+		void ChangeScene(const std::string& sceneName);
+		void AddScene(const std::string& sceneName, sceneType scene);
+		sf::RenderWindow& GetWindow();
+		unsigned WindowHeight() const;
+		unsigned WindowWidth() const;
+		int GetFps() const;
 
 	private:
-		void gameInit();
-		void gameUpdate(float deltaTime);
+		void GameInit();
+		void GameUpdate(float deltaTime);
 
 	private:
 		sf::RenderWindow m_window;
-		sf::Clock m_clock;
+		sceneType m_currentScene = nullptr;
+		std::unordered_map<std::string, sceneType> m_sceneMap;
+		std::string m_currentSceneName;
 		unsigned m_windowHeight = 500;
 		unsigned m_windowWidth = 800;
 		bool m_isPaused = false;
