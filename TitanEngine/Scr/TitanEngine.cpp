@@ -1,6 +1,7 @@
 #include "TitanEngine.h"
 #include<iostream>
 
+
 namespace te
 {
 	TitanEngine::TitanEngine()
@@ -24,7 +25,7 @@ namespace te
 		{
 			static sf::Clock clock;
 			float dt = clock.restart().asSeconds();
-			// user input check
+			UserInput();
 			if (!m_isPaused && m_isFocused)
 			{
 				GameUpdate(dt);
@@ -60,6 +61,47 @@ namespace te
 	void TitanEngine::AddScene(const std::string& sceneName, sceneType scene)
 	{
 		m_sceneMap[sceneName] = scene;
+	}
+
+	void TitanEngine::UserInput()
+	{
+		// check all the window's events that were triggered since the last iteration of the loop
+		while (m_window.pollEvent(m_input))
+		{
+			if (m_input.type == sf::Event::Closed)
+				m_window.close();
+
+			switch (m_input.type)
+			{
+			case sf::Event::KeyPressed:
+				if (m_input.key.scancode == sf::Keyboard::Scan::P) // Pause
+					m_isPaused = !m_isPaused;
+				KeyInput(true);
+				break;
+			case sf::Event::KeyReleased:
+				KeyInput(false);
+				break;
+			case sf::Event::MouseButtonPressed:
+				break;
+			case sf::Event::LostFocus:
+				m_isFocused = false;
+				break;
+			case sf::Event::GainedFocus:
+				m_isFocused = true;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	void TitanEngine::KeyInput(bool isPressed)
+	{
+		if (!m_isPaused && m_isFocused) return;
+		if (m_currentScene->getActionMap().find(m_input.key.code) == m_currentScene->getActionMap().end()) return;
+
+		ActionType actionType = isPressed ? ActionType::Pressed : ActionType::Released;
+		m_currentScene->CheckInput(Action(m_currentScene->getActionMap().at(m_input.key.code), actionType));
 	}
 
 	sf::RenderWindow& TitanEngine::GetWindow()

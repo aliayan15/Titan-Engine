@@ -3,6 +3,7 @@
 #include<string>
 #include"SceneBase.h"
 #include<unordered_map>
+#include "Action.h"
 
 namespace te
 {
@@ -17,6 +18,8 @@ namespace te
 		void Run(const std::string& startScene);
 		void ChangeScene(const std::string& sceneName);
 		void AddScene(const std::string& sceneName, sceneType scene);
+		
+
 		sf::RenderWindow& GetWindow();
 		unsigned WindowHeight() const;
 		unsigned WindowWidth() const;
@@ -25,6 +28,8 @@ namespace te
 	private:
 		void GameInit();
 		void GameUpdate(float deltaTime);
+		void UserInput();
+		void KeyInput(bool isPressed);
 
 	private:
 		sf::RenderWindow m_window;
@@ -36,6 +41,7 @@ namespace te
 		bool m_isPaused = false;
 		bool m_isFocused = true;
 		int m_fps = 60;
+		sf::Event m_input;
 	};
 }
 
