@@ -1,6 +1,7 @@
 #pragma once
 #include"Action.h"
 #include<unordered_map>
+#include"EntityManager.h"
 
 namespace te
 {
@@ -10,9 +11,9 @@ namespace te
 	public:
 		SceneBase();
 
-		virtual void Init(TitanEngine* engine) = 0;
-		virtual void Update() = 0;
-		virtual void CheckInput(const Action& action) = 0;
+		virtual void Init(te::TitanEngine* engine) = 0;
+		virtual void Update(float deltaTime) = 0;
+		virtual void CheckInput(const te::Action& action) = 0;
 		virtual void EndScene();
 
 		/// <summary>
@@ -30,6 +31,7 @@ namespace te
 
 	protected:
 		TitanEngine* m_engine = nullptr;
+		te::EntityManager m_entityManager;
 		std::unordered_map<int, ActionName> m_actionMap;
 	};
 

@@ -5,6 +5,8 @@
 #include<unordered_map>
 #include "Action.h"
 
+#include<iostream>
+
 namespace te
 {
 	typedef std::shared_ptr<SceneBase> sceneType;
@@ -15,9 +17,8 @@ namespace te
 		TitanEngine(unsigned windowWidth, unsigned windowHeight);
 		TitanEngine(unsigned windowWidth, unsigned windowHeight, int fpsLimit);
 
-		void Run(const std::string& startScene);
-		void ChangeScene(const std::string& sceneName);
-		void AddScene(const std::string& sceneName, sceneType scene);
+		void Run(const sceneType startScene);
+		void ChangeScene(const sceneType sceneName);
 		
 
 		sf::RenderWindow& GetWindow();
@@ -36,7 +37,6 @@ namespace te
 		unsigned m_windowHeight = 500;
 		unsigned m_windowWidth = 800;
 		sceneType m_currentScene = nullptr;
-		std::unordered_map<std::string, sceneType> m_sceneMap;
 		std::string m_currentSceneName;
 		bool m_isPaused = false;
 		bool m_isFocused = true;

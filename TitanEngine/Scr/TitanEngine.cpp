@@ -1,5 +1,5 @@
 #include "TitanEngine.h"
-#include<iostream>
+
 
 
 namespace te
@@ -16,7 +16,7 @@ namespace te
 	{
 	}
 
-	void TitanEngine::Run(const std::string& startScene)
+	void TitanEngine::Run(const sceneType startScene)
 	{
 		GameInit();
 		ChangeScene(startScene);
@@ -42,26 +42,22 @@ namespace te
 	}
 	void TitanEngine::GameUpdate(float deltaTime)
 	{
-		m_currentScene->Update();
+		m_currentScene->Update(deltaTime);
 	}
 
-	void TitanEngine::ChangeScene(const std::string& sceneName)
+	void TitanEngine::ChangeScene(const sceneType scenePtr)
 	{
-		if (m_sceneMap.find(sceneName) == m_sceneMap.end())
+		if (scenePtr == nullptr)
 		{
-			std::cout << "Scene is not found: " << sceneName << std::endl;
+			std::cout << "Null Scene!!" << std::endl;
 			return;
 		}
 		if (m_currentScene != nullptr)
 			m_currentScene->EndScene();
-		m_currentScene = m_sceneMap.at(sceneName);
+		m_currentScene = scenePtr;
 		m_currentScene->Init(this);
 	}
 
-	void TitanEngine::AddScene(const std::string& sceneName, sceneType scene)
-	{
-		m_sceneMap[sceneName] = scene;
-	}
 
 	void TitanEngine::UserInput()
 	{

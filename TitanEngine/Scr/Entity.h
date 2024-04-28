@@ -23,19 +23,19 @@ namespace te
 
 		template<typename T> T& getComponent()
 		{
-			static_assert(std::is_base_of<ComponentBase, T>::value,
+			static_assert(std::is_base_of<te::Components::ComponentBase, T>::value,
 				"T must be derived from ComponentBase");
 			return std::get<T>(m_components);
 		}
 		template<typename T> const T& getComponent() const
 		{
-			static_assert(std::is_base_of<ComponentBase, T>::value,
+			static_assert(std::is_base_of<te::Components::ComponentBase, T>::value,
 				"T must be derived from ComponentBase");
 			return std::get<T>(m_components);
 		}
 		template<typename T, typename... TArgs> T& addComponent(TArgs&&... mArgs)
 		{
-			static_assert(std::is_base_of<ComponentBase, T>::value,
+			static_assert(std::is_base_of<te::Components::ComponentBase, T>::value,
 				"T must be derived from ComponentBase");
 			auto& component = getComponent<T>();
 			component = T(std::forward<TArgs>(mArgs)...);
@@ -44,22 +44,22 @@ namespace te
 		}
 		template<typename T> bool hasComponent() const
 		{
-			static_assert(std::is_base_of<ComponentBase, T>::value,
+			static_assert(std::is_base_of<te::Components::ComponentBase, T>::value,
 				"T must be derived from ComponentBase");
 			return std::get<T>(m_components).has;
 		}
 		template<typename T> void removeComponent()
 		{
-			static_assert(std::is_base_of<ComponentBase, T>::value,
+			static_assert(std::is_base_of<te::Components::ComponentBase, T>::value,
 				"T must be derived from ComponentBase");
 			getComponent<T>() = T();
 		}
+	private:
+		Entity(const std::string& tag);
 
 	private:
 		const std::string m_tag = "default";
 		bool m_alive = true;
 		ComponentTuple m_components;
-
-		Entity(const std::string& tag);
 	};
 }

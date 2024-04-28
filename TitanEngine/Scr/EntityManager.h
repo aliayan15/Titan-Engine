@@ -11,6 +11,7 @@ namespace te
 
 	class EntityManager
 	{
+	private:
 		/// <summary>
 		/// All entities.
 		/// </summary>
