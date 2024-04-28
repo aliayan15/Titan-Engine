@@ -13,7 +13,7 @@ namespace te
 	class TitanEngine
 	{
 	public:
-		TitanEngine();
+		TitanEngine() = default;
 		TitanEngine(unsigned windowWidth, unsigned windowHeight);
 		TitanEngine(unsigned windowWidth, unsigned windowHeight, int fpsLimit);
 

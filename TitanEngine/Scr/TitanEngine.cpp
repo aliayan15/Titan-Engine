@@ -4,9 +4,6 @@
 
 namespace te
 {
-	TitanEngine::TitanEngine()
-	{
-	}
 	TitanEngine::TitanEngine(unsigned windowWidth, unsigned windowHeight)
 		:m_windowHeight(windowHeight), m_windowWidth(windowWidth)
 	{
