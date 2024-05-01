@@ -38,14 +38,7 @@ namespace te
 		m_toAdd.clear();
 	}
 
-	std::shared_ptr<Entity> EntityManager::AddEntity(const std::string& tag)
-	{
-		auto e = std::shared_ptr<Entity>(new Entity(tag));
-		e->addComponent<te::Components::CTransform>(te::Utility::Vec2f());
-		m_toAdd.push_back(e);
-		return e;
-	}
-
+	
 	std::shared_ptr<Entity> EntityManager::AddEntity(const std::string& tag, te::Utility::Vec2f position, float angleZ)
 	{
 		auto e = std::shared_ptr<Entity>(new Entity(tag));

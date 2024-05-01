@@ -30,15 +30,24 @@ namespace te::Components
 	{
 		sf::Sprite sprite;
 		CSprite() = default;
+
+		CSprite(const sf::Texture& texture, sf::Vector2f origin = sf::Vector2f(0.0f, 0.0f),
+			sf::Vector2f scale = sf::Vector2f(1.0f, 1.0f))
+		{
+			sprite.setTexture(texture);
+			sprite.setOrigin(origin);
+			sprite.setScale(scale);
+		}
 	};
 
 	struct CRectangleShape : public ComponentBase
 	{
 		sf::RectangleShape rectangleShape;
 		CRectangleShape() {}
-		CRectangleShape(sf::Vector2f size)
+		CRectangleShape(sf::Vector2f size, sf::Vector2f origin = sf::Vector2f(0.0f, 0.0f))
 		{
 			rectangleShape.setSize(size);
+			rectangleShape.setOrigin(origin);
 		}
 	};
 
