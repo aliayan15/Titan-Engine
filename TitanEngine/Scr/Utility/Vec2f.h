@@ -1,4 +1,5 @@
 #pragma once
+#include"SFML/Graphics.hpp"
 
 namespace te::Utility
 {
@@ -25,6 +26,9 @@ namespace te::Utility
 		Vec2f& operator -= (const Vec2f& v);
 		bool operator ==(const Vec2f& v);
 		bool operator !=(const Vec2f& v);
+		operator sf::Vector2f();
+		operator sf::Vector2i();
+		operator sf::Vector2u();
 
 		float length();
 		float Distance(const Vec2f v);

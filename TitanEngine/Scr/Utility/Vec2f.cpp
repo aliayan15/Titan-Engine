@@ -79,6 +79,21 @@ namespace te::Utility
 		return (x != v.x) || (y != v.y);
 	}
 
+	Vec2f::operator sf::Vector2f()
+	{
+		return sf::Vector2f(x, y);
+	}
+
+	Vec2f::operator sf::Vector2i()
+	{
+		return sf::Vector2i((int)x, (int)y);
+	}
+
+	Vec2f::operator sf::Vector2u()
+	{
+		return sf::Vector2u((unsigned)x, (unsigned)y);
+	}
+
 	float Vec2f::length()
 	{
 		return sqrtf((x * x) + (y * y));
