@@ -52,7 +52,7 @@ namespace te
 		if (m_currentScene != nullptr)
 			m_currentScene->EndScene();
 		m_currentScene = scenePtr;
-		m_currentScene->Init(this);
+		m_currentScene->Init();
 	}
 
 

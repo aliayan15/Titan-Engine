@@ -18,6 +18,6 @@ class SceneFactory
 	
 public:
 	SceneFactory() = default;
-	sceneType CreateScene(SceneName name);
+	sceneType CreateScene(SceneName name, te::TitanEngine* engine);
 };
 

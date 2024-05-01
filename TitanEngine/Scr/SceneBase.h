@@ -10,12 +10,13 @@ namespace te
 	class SceneBase
 	{
 	public:
-		SceneBase() = default;
+		SceneBase(te::TitanEngine* engine);
 
-		virtual void Init(te::TitanEngine* engine) = 0;
+		virtual void Init() = 0;
 		virtual void Update(float deltaTime) = 0;
 		virtual void CheckInput(const te::Action& action) = 0;
 		virtual void EndScene();
+		virtual void Render(sf::RenderWindow& window);
 
 		/// <summary>
 		/// Register new action for a key.

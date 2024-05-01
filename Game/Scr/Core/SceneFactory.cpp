@@ -1,7 +1,7 @@
 #include "SceneFactory.h"
 #include"TestScene.h"
 
-sceneType SceneFactory::CreateScene(SceneName name)
+sceneType SceneFactory::CreateScene(SceneName name, te::TitanEngine* engine)
 {
 	switch (name)
 	{
@@ -14,5 +14,5 @@ sceneType SceneFactory::CreateScene(SceneName name)
 	default:
 		break;
 	}
-	return std::make_shared<TestScene>();
+	return std::make_shared<TestScene>(engine);
 }
