@@ -25,8 +25,27 @@ namespace te
 	public:
 		EntityManager();
 		void Update();
+		/// <summary>
+		/// Add new entity.
+		/// </summary>
+		/// <param name="tag"></param>
+		/// <returns></returns>
 		std::shared_ptr<Entity> AddEntity(const std::string& tag);
+		/// <summary>
+		/// Add new entity.
+		/// </summary>
+		/// <param name="tag"></param>
+		/// <param name="position"></param>
+		/// <param name="angleZ"></param>
+		/// <returns></returns>
 		std::shared_ptr<Entity> AddEntity(const std::string& tag, te::Utility::Vec2f position, float angleZ = 0);
+		/// <summary>
+		/// Add new entity.
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="angleZ"></param>
+		/// <returns></returns>
+		std::shared_ptr<Entity> AddEntity(te::Utility::Vec2f position= te::Utility::Vec2f(0,0), float angleZ = 0);
 		EntityVec& GetEntities();
 		EntityVec& GetEntities(const std::string& tag);
 	};

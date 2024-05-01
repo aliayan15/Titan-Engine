@@ -2,9 +2,6 @@
 
 namespace te
 {
-	SceneBase::SceneBase()
-	{
-	}
 	void SceneBase::EndScene()
 	{
 	}

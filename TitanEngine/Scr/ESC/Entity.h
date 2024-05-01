@@ -9,7 +9,10 @@ namespace te
 {
 	// Entities only can be created by Entity Manager 
 	typedef std::tuple<
-		te::Components::CTransform
+		te::Components::CTransform,
+		te::Components::CSprite,
+		te::Components::CRectangleShape,
+		te::Components::CText
 	> ComponentTuple;
 
 	class Entity
@@ -56,6 +59,7 @@ namespace te
 		}
 	private:
 		Entity(const std::string& tag);
+		Entity() = default;
 
 	private:
 		const std::string m_tag = "default";

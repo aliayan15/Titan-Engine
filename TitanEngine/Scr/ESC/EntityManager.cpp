@@ -55,6 +55,14 @@ namespace te
 	}
 
 
+	std::shared_ptr<Entity> EntityManager::AddEntity(te::Utility::Vec2f position, float angleZ)
+	{
+		auto e = std::shared_ptr<Entity>(new Entity());
+		e->addComponent<te::Components::CTransform>(position, angleZ);
+		m_toAdd.push_back(e);
+		return e;
+	}
+
 	EntityVec& EntityManager::GetEntities()
 	{
 		return m_entities;

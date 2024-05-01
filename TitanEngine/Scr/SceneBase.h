@@ -1,7 +1,7 @@
 #pragma once
 #include"Action.h"
 #include<unordered_map>
-#include"EntityManager.h"
+#include"ESC/EntityManager.h"
 #include"AssetLoader.h"
 
 namespace te
@@ -10,7 +10,7 @@ namespace te
 	class SceneBase
 	{
 	public:
-		SceneBase();
+		SceneBase() = default;
 
 		virtual void Init(te::TitanEngine* engine) = 0;
 		virtual void Update(float deltaTime) = 0;
@@ -33,7 +33,7 @@ namespace te
 	protected:
 		TitanEngine* m_engine = nullptr;
 		te::EntityManager m_entityManager;
-		te::AssetLoader m_assetLoader;
+		te::AssetLoader m_assets;
 		std::unordered_map<int, ActionName> m_actionMap;
 	};
 
